@@ -11,12 +11,12 @@ using System.Windows.Forms;
 
 namespace VolumeLock
 {
-    public partial class MainForm : Form
+    public partial class moMainForm : Form
     {
         IAudioEndpointVolume moTargetSpeakerVolume = null;
-        float mfTargetVolume;
+        //float mfTargetVolume;
 
-        public MainForm()
+        public moMainForm()
         {
             InitializeComponent();
             InitializeComponentExt();
@@ -24,35 +24,16 @@ namespace VolumeLock
 
         private void InitializeComponentExt()
         {
-            mroDoLockCbx.Click += OnClick_DoLockCbx;
-        }
-
-        private void OnClick_DoLockCbx(object aoS, EventArgs aoE)
-        {
-            if (!mroDoLockCbx.Checked)
-            {
-                try { mfTargetVolume = float.Parse(mroTargetVolumeTbx.Text); }
-                catch { mfTargetVolume = -0.1f; }
-                finally { }
-
-                if (!(0f <= mfTargetVolume && mfTargetVolume <= 1f))
-                {
-                    mroDeviceNameTbx.Text = "(PLZ USE VALID VALUE)";
-                    return;
-                }
-            }
-
-            mroDoLockCbx.Checked = !mroDoLockCbx.Checked;
         }
 
         private void OnLoad_MainForm(object aoS, EventArgs aoE)
         {
-            mroDeviceNameTbx.Text = "(READY)";
+            moDeviceNameTbx.Text = "(READY)";
         }
 
         private void OnCheckedChanged_LockCbx(object aoS, EventArgs aoE)
         {
-            if (mroDoLockCbx.Checked)
+            if (moDoLockCbx.Checked)
             {
                 try
                 {
@@ -69,22 +50,21 @@ namespace VolumeLock
                     PropertyVariant roPropVar;
                     roPropertyStore.GetValue(ref roPropKey, out roPropVar);
 
-                    mroDeviceNameTbx.Text = (string)roPropVar.Value;
+                    moDeviceNameTbx.Text = (string)roPropVar.Value;
 
                     Guid uiid = typeof(IAudioEndpointVolume).GUID;
                     object roTemp = null;
                     oTargetSpeaker.Activate(ref uiid, 0, IntPtr.Zero, out roTemp);
                     moTargetSpeakerVolume = (IAudioEndpointVolume)roTemp;
 
-                    mroTargetVolumeTbx.ReadOnly = true;
-                    mroDoLockCbx.Text = "Unlock";
+                    moDoLockCbx.Text = "Unlock";
                     moTimer.Enabled = true;
                 }
                 catch
                 {
-                    mroDeviceNameTbx.Text = "(ERROR)";
-                    mroTargetVolumeTbx.Enabled = false;
-                    mroDoLockCbx.Enabled = false;
+                    moDeviceNameTbx.Text = "(ERROR)";
+                    moTargetVolumeNud.Enabled = false;
+                    moDoLockCbx.Enabled = false;
                 }
                 finally
                 {
@@ -92,16 +72,16 @@ namespace VolumeLock
             }
             else
             {
-                mroDeviceNameTbx.Text = "(READY)";
-                mroTargetVolumeTbx.ReadOnly = false;
-                mroDoLockCbx.Text = "Lock";
+                moDeviceNameTbx.Text = "(READY)";
+                moDoLockCbx.Text = "Lock";
                 moTimer.Enabled = false;
             }
         }
 
         private void OnTick_Timer(object sender, EventArgs e)
         {
-            moTargetSpeakerVolume.SetMasterVolumeLevelScalar(mfTargetVolume, new Guid());
+            float fTargetVolume = Decimal.ToSingle(moTargetVolumeNud.Value) / 100f;
+            moTargetSpeakerVolume.SetMasterVolumeLevelScalar(fTargetVolume, new Guid());
         }
     }
 }

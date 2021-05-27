@@ -1,7 +1,7 @@
 ﻿
 namespace VolumeLock
 {
-    partial class MainForm
+    partial class moMainForm
     {
         /// <summary>
         /// 필수 디자이너 변수입니다.
@@ -30,82 +30,92 @@ namespace VolumeLock
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.mroDeviceNameLbl = new System.Windows.Forms.Label();
-            this.mroTargetVolumeLbl = new System.Windows.Forms.Label();
-            this.mroDeviceNameTbx = new System.Windows.Forms.TextBox();
-            this.mroTargetVolumeTbx = new System.Windows.Forms.TextBox();
-            this.mroDoLockCbx = new System.Windows.Forms.CheckBox();
+            this.moDeviceNameLbl = new System.Windows.Forms.Label();
+            this.moTargetVolumeLbl = new System.Windows.Forms.Label();
+            this.moDeviceNameTbx = new System.Windows.Forms.TextBox();
+            this.moDoLockCbx = new System.Windows.Forms.CheckBox();
             this.moTimer = new System.Windows.Forms.Timer(this.components);
+            this.moTargetVolumeNud = new System.Windows.Forms.NumericUpDown();
+            ((System.ComponentModel.ISupportInitialize)(this.moTargetVolumeNud)).BeginInit();
             this.SuspendLayout();
             // 
-            // mroDeviceNameLbl
+            // moDeviceNameLbl
             // 
-            this.mroDeviceNameLbl.AutoSize = true;
-            this.mroDeviceNameLbl.Location = new System.Drawing.Point(12, 15);
-            this.mroDeviceNameLbl.Name = "mroDeviceNameLbl";
-            this.mroDeviceNameLbl.Size = new System.Drawing.Size(122, 15);
-            this.mroDeviceNameLbl.TabIndex = 0;
-            this.mroDeviceNameLbl.Text = "상태 혹은 장치 이름 :";
+            this.moDeviceNameLbl.AutoSize = true;
+            this.moDeviceNameLbl.Location = new System.Drawing.Point(12, 15);
+            this.moDeviceNameLbl.Name = "moDeviceNameLbl";
+            this.moDeviceNameLbl.Size = new System.Drawing.Size(122, 15);
+            this.moDeviceNameLbl.TabIndex = 0;
+            this.moDeviceNameLbl.Text = "상태 혹은 장치 이름 :";
             // 
-            // mroTargetVolumeLbl
+            // moTargetVolumeLbl
             // 
-            this.mroTargetVolumeLbl.AutoSize = true;
-            this.mroTargetVolumeLbl.Location = new System.Drawing.Point(12, 44);
-            this.mroTargetVolumeLbl.Name = "mroTargetVolumeLbl";
-            this.mroTargetVolumeLbl.Size = new System.Drawing.Size(108, 15);
-            this.mroTargetVolumeLbl.TabIndex = 1;
-            this.mroTargetVolumeLbl.Text = "목표 볼륨 (0 ~ 1) :";
+            this.moTargetVolumeLbl.AutoSize = true;
+            this.moTargetVolumeLbl.Location = new System.Drawing.Point(12, 44);
+            this.moTargetVolumeLbl.Name = "moTargetVolumeLbl";
+            this.moTargetVolumeLbl.Size = new System.Drawing.Size(122, 15);
+            this.moTargetVolumeLbl.TabIndex = 2;
+            this.moTargetVolumeLbl.Text = "목표 볼륨 (0 ~ 100) :";
             // 
-            // mroDeviceNameTbx
+            // moDeviceNameTbx
             // 
-            this.mroDeviceNameTbx.Location = new System.Drawing.Point(142, 12);
-            this.mroDeviceNameTbx.Name = "mroDeviceNameTbx";
-            this.mroDeviceNameTbx.ReadOnly = true;
-            this.mroDeviceNameTbx.Size = new System.Drawing.Size(170, 23);
-            this.mroDeviceNameTbx.TabIndex = 2;
+            this.moDeviceNameTbx.Location = new System.Drawing.Point(142, 12);
+            this.moDeviceNameTbx.Name = "moDeviceNameTbx";
+            this.moDeviceNameTbx.ReadOnly = true;
+            this.moDeviceNameTbx.Size = new System.Drawing.Size(170, 23);
+            this.moDeviceNameTbx.TabIndex = 1;
             // 
-            // mroTargetVolumeTbx
+            // moDoLockCbx
             // 
-            this.mroTargetVolumeTbx.Location = new System.Drawing.Point(142, 41);
-            this.mroTargetVolumeTbx.Name = "mroTargetVolumeTbx";
-            this.mroTargetVolumeTbx.Size = new System.Drawing.Size(64, 23);
-            this.mroTargetVolumeTbx.TabIndex = 3;
-            this.mroTargetVolumeTbx.Text = "0.5";
-            // 
-            // mroDoLockCbx
-            // 
-            this.mroDoLockCbx.Appearance = System.Windows.Forms.Appearance.Button;
-            this.mroDoLockCbx.AutoCheck = false;
-            this.mroDoLockCbx.Location = new System.Drawing.Point(212, 41);
-            this.mroDoLockCbx.Name = "mroDoLockCbx";
-            this.mroDoLockCbx.Size = new System.Drawing.Size(100, 48);
-            this.mroDoLockCbx.TabIndex = 5;
-            this.mroDoLockCbx.Text = "Lock";
-            this.mroDoLockCbx.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.mroDoLockCbx.UseVisualStyleBackColor = true;
-            this.mroDoLockCbx.CheckedChanged += new System.EventHandler(this.OnCheckedChanged_LockCbx);
+            this.moDoLockCbx.Appearance = System.Windows.Forms.Appearance.Button;
+            this.moDoLockCbx.Location = new System.Drawing.Point(212, 41);
+            this.moDoLockCbx.Name = "moDoLockCbx";
+            this.moDoLockCbx.Size = new System.Drawing.Size(100, 48);
+            this.moDoLockCbx.TabIndex = 4;
+            this.moDoLockCbx.Text = "Lock";
+            this.moDoLockCbx.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.moDoLockCbx.UseVisualStyleBackColor = true;
+            this.moDoLockCbx.CheckedChanged += new System.EventHandler(this.OnCheckedChanged_LockCbx);
             // 
             // moTimer
             // 
             this.moTimer.Tick += new System.EventHandler(this.OnTick_Timer);
             // 
-            // MainForm
+            // moTargetVolumeNud
+            // 
+            this.moTargetVolumeNud.Increment = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            this.moTargetVolumeNud.Location = new System.Drawing.Point(142, 41);
+            this.moTargetVolumeNud.Name = "moTargetVolumeNud";
+            this.moTargetVolumeNud.Size = new System.Drawing.Size(64, 23);
+            this.moTargetVolumeNud.TabIndex = 3;
+            this.moTargetVolumeNud.Value = new decimal(new int[] {
+            50,
+            0,
+            0,
+            0});
+            // 
+            // moMainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(324, 101);
-            this.Controls.Add(this.mroDoLockCbx);
-            this.Controls.Add(this.mroTargetVolumeTbx);
-            this.Controls.Add(this.mroDeviceNameTbx);
-            this.Controls.Add(this.mroTargetVolumeLbl);
-            this.Controls.Add(this.mroDeviceNameLbl);
+            this.Controls.Add(this.moTargetVolumeNud);
+            this.Controls.Add(this.moDoLockCbx);
+            this.Controls.Add(this.moDeviceNameTbx);
+            this.Controls.Add(this.moTargetVolumeLbl);
+            this.Controls.Add(this.moDeviceNameLbl);
             this.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.MaximizeBox = false;
-            this.Name = "MainForm";
+            this.Name = "moMainForm";
             this.Text = "VolumeLock";
             this.Load += new System.EventHandler(this.OnLoad_MainForm);
+            ((System.ComponentModel.ISupportInitialize)(this.moTargetVolumeNud)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -113,12 +123,12 @@ namespace VolumeLock
 
         #endregion
 
-        private System.Windows.Forms.Label mroDeviceNameLbl;
-        private System.Windows.Forms.Label mroTargetVolumeLbl;
-        private System.Windows.Forms.TextBox mroDeviceNameTbx;
-        private System.Windows.Forms.TextBox mroTargetVolumeTbx;
-        private System.Windows.Forms.CheckBox mroDoLockCbx;
+        private System.Windows.Forms.Label moDeviceNameLbl;
+        private System.Windows.Forms.Label moTargetVolumeLbl;
+        private System.Windows.Forms.TextBox moDeviceNameTbx;
+        private System.Windows.Forms.CheckBox moDoLockCbx;
         private System.Windows.Forms.Timer moTimer;
+        private System.Windows.Forms.NumericUpDown moTargetVolumeNud;
     }
 }
 
