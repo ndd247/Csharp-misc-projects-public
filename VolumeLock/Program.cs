@@ -16,7 +16,7 @@ namespace VolumeLock
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new moMainForm());
+            Application.Run(new MainForm());
         }
     }
 }

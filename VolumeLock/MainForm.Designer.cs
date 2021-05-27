@@ -1,7 +1,7 @@
 ﻿
 namespace VolumeLock
 {
-    partial class moMainForm
+    partial class MainForm
     {
         /// <summary>
         /// 필수 디자이너 변수입니다.
@@ -98,7 +98,7 @@ namespace VolumeLock
             0,
             0});
             // 
-            // moMainForm
+            // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -112,7 +112,7 @@ namespace VolumeLock
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.MaximizeBox = false;
-            this.Name = "moMainForm";
+            this.Name = "MainForm";
             this.Text = "VolumeLock";
             this.Load += new System.EventHandler(this.OnLoad_MainForm);
             ((System.ComponentModel.ISupportInitialize)(this.moTargetVolumeNud)).EndInit();

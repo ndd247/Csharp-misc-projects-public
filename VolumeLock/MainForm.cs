@@ -11,12 +11,12 @@ using System.Windows.Forms;
 
 namespace VolumeLock
 {
-    public partial class moMainForm : Form
+    public partial class MainForm : Form
     {
         IAudioEndpointVolume moTargetSpeakerVolume = null;
         //float mfTargetVolume;
 
-        public moMainForm()
+        public MainForm()
         {
             InitializeComponent();
             InitializeComponentExt();
