@@ -36,6 +36,8 @@ namespace VolumeLock
             this.moDoLockCbx = new System.Windows.Forms.CheckBox();
             this.moTimer = new System.Windows.Forms.Timer(this.components);
             this.moTargetVolumeNud = new System.Windows.Forms.NumericUpDown();
+            this.moCopyrightLbl = new System.Windows.Forms.Label();
+            this.moCopyright2Lbl = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.moTargetVolumeNud)).BeginInit();
             this.SuspendLayout();
             // 
@@ -98,11 +100,33 @@ namespace VolumeLock
             0,
             0});
             // 
+            // moCopyrightLbl
+            // 
+            this.moCopyrightLbl.AutoSize = true;
+            this.moCopyrightLbl.Font = new System.Drawing.Font("맑은 고딕", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.moCopyrightLbl.Location = new System.Drawing.Point(12, 88);
+            this.moCopyrightLbl.Name = "moCopyrightLbl";
+            this.moCopyrightLbl.Size = new System.Drawing.Size(67, 12);
+            this.moCopyrightLbl.TabIndex = 5;
+            this.moCopyrightLbl.Text = "제작자: ndd247";
+            // 
+            // moCopyright2Lbl
+            // 
+            this.moCopyright2Lbl.AutoSize = true;
+            this.moCopyright2Lbl.Font = new System.Drawing.Font("맑은 고딕", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.moCopyright2Lbl.Location = new System.Drawing.Point(12, 100);
+            this.moCopyright2Lbl.Name = "moCopyright2Lbl";
+            this.moCopyright2Lbl.Size = new System.Drawing.Size(293, 12);
+            this.moCopyright2Lbl.TabIndex = 6;
+            this.moCopyright2Lbl.Text = "  (ndd247blog.wordpress.com/2021/05/27/윈도-오디오-볼륨-고정하기)";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(324, 101);
+            this.ClientSize = new System.Drawing.Size(324, 121);
+            this.Controls.Add(this.moCopyright2Lbl);
+            this.Controls.Add(this.moCopyrightLbl);
             this.Controls.Add(this.moTargetVolumeNud);
             this.Controls.Add(this.moDoLockCbx);
             this.Controls.Add(this.moDeviceNameTbx);
@@ -129,6 +153,8 @@ namespace VolumeLock
         private System.Windows.Forms.CheckBox moDoLockCbx;
         private System.Windows.Forms.Timer moTimer;
         private System.Windows.Forms.NumericUpDown moTargetVolumeNud;
+        private System.Windows.Forms.Label moCopyrightLbl;
+        private System.Windows.Forms.Label moCopyright2Lbl;
     }
 }
 
