@@ -106,10 +106,15 @@ namespace TimeKeeper
                             continue;
 
                         uint uiTaskID = 0;
-                        try { uiTaskID = uint.Parse(rsTerms[0]); }
+                        bool isTaskID_ParsingOK = false;
+                        try
+                        {
+                            uiTaskID = uint.Parse(rsTerms[0]);
+                            isTaskID_ParsingOK = true;
+                        }
                         catch { }
                         finally { }
-                        if (0 == uiTaskID)
+                        if (!isTaskID_ParsingOK)
                             continue;
 
                         TimeSpan dsTotalTime = new TimeSpan();
