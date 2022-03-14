@@ -5,6 +5,8 @@ VisualStudioVersion = 17.1.32228.430
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VolumeLock", "VolumeLock\VolumeLock.csproj", "{514B3CE8-E461-429E-BF61-856C8DE766FE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TimeKeeper", "TimeKeeper\TimeKeeper.csproj", "{F19729CE-44A5-4DF8-A1B5-8F1635159C9F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{514B3CE8-E461-429E-BF61-856C8DE766FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{514B3CE8-E461-429E-BF61-856C8DE766FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{514B3CE8-E461-429E-BF61-856C8DE766FE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F19729CE-44A5-4DF8-A1B5-8F1635159C9F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F19729CE-44A5-4DF8-A1B5-8F1635159C9F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F19729CE-44A5-4DF8-A1B5-8F1635159C9F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F19729CE-44A5-4DF8-A1B5-8F1635159C9F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
