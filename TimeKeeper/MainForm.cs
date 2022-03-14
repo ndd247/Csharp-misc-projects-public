@@ -138,6 +138,7 @@ namespace TimeKeeper
 
         private void InitializeComponentEx()
         {
+            this.FormClosing += OnFormClosing_MainForm;
             mroTodayLBL.DoubleClick += OnDoubleClick_TodayLBL;
 
             mdsToday = DateTime.Now;
@@ -185,6 +186,12 @@ namespace TimeKeeper
             InitializeTaskTimeStatus();
 
             mroTaskItemsCBL.SelectedIndex = 0;
+        }
+
+        private void OnFormClosing_MainForm(object aroS, FormClosingEventArgs aroE)
+        {
+            if (mroKeepCBTN.Checked)
+                mroKeepCBTN.Checked = false;
         }
 
         private void OnDoubleClick_TodayLBL(object aroS, EventArgs aroE)
