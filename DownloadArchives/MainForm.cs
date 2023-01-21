@@ -222,7 +222,7 @@ namespace DownloadArchives
                 isArchivesChanged = true;
 
                 roSB.AppendLine("I: 코드 섹션 \'" + asCode + "\' 을/를 새로 만들었습니다.");
-                roSB.Append("I: 코드 섹션 \'" + asCode + "\' 에서 ");
+                roSB.Append("I: 코드 섹션 \'" + asCode + "\' 에 ");
 
                 bool isFirstTime = true;
                 foreach (uint uiNumber in aroNumberSet)
@@ -241,7 +241,7 @@ namespace DownloadArchives
             {
                 SortedSet<uint> roCurrNumberSet = mroCurrArchives[asCode];
 
-                roSB.Append("I: 코드 섹션 " + asCode + " 에서 ");
+                roSB.Append("I: 코드 섹션 " + asCode + " 에 ");
 
                 bool isFirstTime = true;
                 foreach (uint uiNumber in aroNumberSet)
