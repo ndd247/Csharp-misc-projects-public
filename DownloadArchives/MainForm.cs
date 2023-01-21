@@ -124,7 +124,7 @@ namespace DownloadArchives
             return mroCodeInputCBX.Text.Trim();
         }
 
-        private SortedSet<uint> AcquireNumberSetFromUI()
+        private SortedSet<uint> AcquireNumberSetFromUI(StringBuilder aroWarningSB = null)
         {
             SortedSet<uint> roNumberSetRet = new SortedSet<uint>();
 
@@ -137,21 +137,29 @@ namespace DownloadArchives
                 {
                     string[] sNumberRangeTerms = sCurrNumberTerm.Split(new char[] { '-', '~' });
                     if (2 != sNumberRangeTerms.Length)
+                    {
+                        aroWarningSB?.AppendLine("W: 범위 형식이 잘못된 데이터가 있습니다. (" + sCurrNumberTerm + ")");
                         continue;
+                    }
 
                     try
                     {
                         uint uiNumberBeg = uint.Parse(sNumberRangeTerms[0]);
                         uint uiNumberEnd = uint.Parse(sNumberRangeTerms[1]);
-                        for (uint n = uiNumberBeg; n <= uiNumberEnd; ++n)
-                            roNumberSetRet.Add(n);
+                        if (uiNumberBeg < uiNumberEnd)
+                        {
+                            for (uint n = uiNumberBeg; n <= uiNumberEnd; ++n)
+                                roNumberSetRet.Add(n);
+                        }
+                        else
+                            aroWarningSB?.AppendLine("W: 범위의 끝값이 시작값보다 작습니다. (" + sCurrNumberTerm + ")");
                     }
-                    catch { /*IGNORE*/ }
+                    catch { aroWarningSB?.AppendLine("W: 숫자로 변환할 수 없는 데이터가 있습니다. (" + sCurrNumberTerm + ")"); }
                 }
                 else
                 {
                     try { roNumberSetRet.Add(uint.Parse(sCurrNumberTerm)); }
-                    catch { /*IGNORE*/ }
+                    catch { aroWarningSB?.AppendLine("W: 숫자로 변환할 수 없는 데이터가 있습니다. (" + sCurrNumberTerm + ")"); }
                 }
             }
 
@@ -427,8 +435,15 @@ namespace DownloadArchives
         {
             if (aroE.KeyCode == Keys.Enter)
             {
+                StringBuilder roWarningSB = new StringBuilder();
+
                 string sCode = AcquireCodeFromUI();
-                SortedSet<uint> roNumbers = AcquireNumberSetFromUI();
+                SortedSet<uint> roNumbers = AcquireNumberSetFromUI(roWarningSB);
+                if (roWarningSB.Length > 0)
+                {
+                    if (DialogResult.Cancel == MessageBox.Show(roWarningSB.ToString(), "입력 데이터에 이싱한 점이 있습니다. 그래도 계속 진행하시겠습니까?", MessageBoxButtons.OKCancel))
+                        return;
+                }
 
                 if (roNumbers.Count > 0)
                 {
