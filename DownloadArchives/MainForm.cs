@@ -178,18 +178,57 @@ namespace DownloadArchives
             StringBuilder roSB = new StringBuilder();
             foreach (KeyValuePair<string, SortedSet<uint>> roCurrPair in mroCurrArchives)
             {
-                roSB.AppendLine("@" + roCurrPair.Key);
+                string sCurrCode = roCurrPair.Key;
+                SortedSet<uint> roCurrNumberSet = roCurrPair.Value;
+
+                roSB.AppendLine("@" + sCurrCode);
 
                 bool isFirstTime = true;
-                foreach (uint uiCurrNumber in roCurrPair.Value)
+                bool isNumberRangeSet = false;
+                uint uiNumberBeg = 0, uiNumberEnd = 0;
+                foreach (uint uiCurrNumber in roCurrNumberSet)
                 {
-                    if (isFirstTime)
-                        isFirstTime = false;
+                    if (!isNumberRangeSet)
+                    {
+                        uiNumberEnd = uiNumberBeg = uiCurrNumber;
+                        isNumberRangeSet = true;
+                    }
                     else
+                    {
+                        if (uiNumberEnd + 1 == uiCurrNumber)
+                            uiNumberEnd = uiCurrNumber;
+                        else
+                        {
+                            if (isFirstTime)
+                                isFirstTime = false;
+                            else
+                                roSB.Append(" ");
+
+                            if (uiNumberBeg == uiNumberEnd)
+                                roSB.Append(uiNumberBeg);
+                            else if (uiNumberBeg + 1 == uiNumberEnd)
+                                roSB.Append(uiNumberBeg + " " + uiNumberEnd);
+                            else
+                                roSB.Append(uiNumberBeg + "-" + uiNumberEnd);
+
+                            uiNumberEnd = uiNumberBeg = uiCurrNumber;
+                        }
+                    }
+                }
+
+                if (isNumberRangeSet)
+                {
+                    if (!isFirstTime)
                         roSB.Append(" ");
 
-                    roSB.Append(uiCurrNumber);
+                    if (uiNumberBeg == uiNumberEnd)
+                        roSB.Append(uiNumberBeg);
+                    else if (uiNumberBeg + 1 == uiNumberEnd)
+                        roSB.Append(uiNumberBeg + " " + uiNumberEnd);
+                    else
+                        roSB.Append(uiNumberBeg + "-" + uiNumberEnd);
                 }
+
                 roSB.AppendLine();
                 roSB.AppendLine();
             }
