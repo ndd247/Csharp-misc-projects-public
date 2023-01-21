@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VolumeLock", "VolumeLock\Vo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TimeKeeper", "TimeKeeper\TimeKeeper.csproj", "{F19729CE-44A5-4DF8-A1B5-8F1635159C9F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DownloadArchives", "DownloadArchives\DownloadArchives.csproj", "{667F470E-3DFE-4310-BD78-BD27A8BDC032}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{F19729CE-44A5-4DF8-A1B5-8F1635159C9F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F19729CE-44A5-4DF8-A1B5-8F1635159C9F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F19729CE-44A5-4DF8-A1B5-8F1635159C9F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{667F470E-3DFE-4310-BD78-BD27A8BDC032}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{667F470E-3DFE-4310-BD78-BD27A8BDC032}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{667F470E-3DFE-4310-BD78-BD27A8BDC032}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{667F470E-3DFE-4310-BD78-BD27A8BDC032}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
