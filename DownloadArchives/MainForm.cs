@@ -126,18 +126,36 @@ namespace DownloadArchives
 
         private SortedSet<uint> AcquireNumberSetFromUI()
         {
-            SortedSet<uint> roNumberSet = new SortedSet<uint>();
+            SortedSet<uint> roNumberSetRet = new SortedSet<uint>();
 
             string sTrimmedRawNumbers = mroNumberSetInputTBX.Text.Trim();
             string[] sNumberTerms = sTrimmedRawNumbers.Split(new char[] { ' ', '\t', ',' });
 
             foreach (string sCurrNumberTerm in sNumberTerms)
             {
-                try { roNumberSet.Add(uint.Parse(sCurrNumberTerm)); }
-                catch { /*IGNORE*/ }
+                if (sCurrNumberTerm.Contains("-") || sCurrNumberTerm.Contains("~"))
+                {
+                    string[] sNumberRangeTerms = sCurrNumberTerm.Split(new char[] { '-', '~' });
+                    if (2 != sNumberRangeTerms.Length)
+                        continue;
+
+                    try
+                    {
+                        uint uiNumberBeg = uint.Parse(sNumberRangeTerms[0]);
+                        uint uiNumberEnd = uint.Parse(sNumberRangeTerms[1]);
+                        for (uint n = uiNumberBeg; n <= uiNumberEnd; ++n)
+                            roNumberSetRet.Add(n);
+                    }
+                    catch { /*IGNORE*/ }
+                }
+                else
+                {
+                    try { roNumberSetRet.Add(uint.Parse(sCurrNumberTerm)); }
+                    catch { /*IGNORE*/ }
+                }
             }
 
-            return roNumberSet;
+            return roNumberSetRet;
         }
 
         private void ShowCodesToUI()
