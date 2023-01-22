@@ -17,8 +17,16 @@ namespace DownloadArchives
 
         private string msArchivesPath = null;
 
-        private bool misArchivesChanged = false;
         private Dictionary<string, SortedSet<uint>> mroCurrArchives = null;
+
+        private bool misArchivesModified = false;
+        private void SetAsArchivesModified()
+        {
+            if (!misArchivesModified)
+                this.Text += " (변경됨)";
+
+            misArchivesModified = true;
+        }
 
         private bool misErrorOccured = false;
 
@@ -352,7 +360,7 @@ namespace DownloadArchives
 
             if (isArchivesChanged)
             {
-                misArchivesChanged = true;
+                SetAsArchivesModified();
                 ShowCurrArchivesToUI();
             }
         }
@@ -408,7 +416,7 @@ namespace DownloadArchives
 
             if (isArchivesChanged)
             {
-                misArchivesChanged = true;
+                SetAsArchivesModified();
                 ShowCurrArchivesToUI();
             }
         }
@@ -454,7 +462,7 @@ namespace DownloadArchives
         {
             if (!misErrorOccured)
             {
-                if (misArchivesChanged)
+                if (misArchivesModified)
                     FlushArchivesToFile(msArchivesPath);
             }
         }
