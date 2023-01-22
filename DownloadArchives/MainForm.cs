@@ -124,6 +124,22 @@ namespace DownloadArchives
             return mroCodeInputCBX.Text.Trim();
         }
 
+        private bool AcquireNumberForFastLookupFromUI(out uint uiNumber)
+        {
+            uiNumber = 0;
+
+            string sTrimmedRawNumbers = mroNumberSetInputTBX.Text.Trim();
+            string[] sNumberTerms = sTrimmedRawNumbers.Split(new char[] { ' ', '\t', ',' });
+
+            if (1 != sNumberTerms.Length)
+                return false;
+
+            try { uiNumber = uint.Parse(sNumberTerms[0]); }
+            catch { return false; }
+
+            return true;
+        }
+
         private SortedSet<uint> AcquireNumberSetFromUI(StringBuilder aroWarningSB = null)
         {
             SortedSet<uint> roNumberSetRet = new SortedSet<uint>();
@@ -460,14 +476,11 @@ namespace DownloadArchives
         private void OnTextChanged_NumberSetInputTBX(object aroS, EventArgs aroE)
         {
             string sCode = AcquireCodeFromUI();
-            SortedSet<uint> roNumbers = AcquireNumberSetFromUI();
-            if (1 == roNumbers.Count)
-            {
-                ProcessFastLookup(sCode, roNumbers.ElementAt(0));
-                return;
-            }
-
-            mroFastLookupOutputLBL.Text = "";
+            uint uiNumber;
+            if (AcquireNumberForFastLookupFromUI(out uiNumber))
+                ProcessFastLookup(sCode, uiNumber);
+            else
+                mroFastLookupOutputLBL.Text = "";
         }
 
         private void OnKeyUp_NumberSetInputTBX(object aroS, KeyEventArgs aroE)
