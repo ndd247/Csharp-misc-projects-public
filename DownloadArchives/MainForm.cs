@@ -15,7 +15,7 @@ namespace DownloadArchives
     {
         private static string DEF_CONFIG_PATH = "./DownloadArchives.config.txt";
 
-        private string msArchivesPath = null;
+        private List<string> mroArchivePathList = null;
 
         private Dictionary<string, SortedSet<uint>> mroCurrArchives = null;
 
@@ -45,33 +45,33 @@ namespace DownloadArchives
             MessageBox.Show("E: FATAL: " + asMsg);
         }
 
-        private string AcquireArchivesPathFromConfigFile()
+        private List<string> AcquireArchivesPathListFromConfigFile()
         {
-            string sArchivesPathRet = null;
+            List<string> roArchivesPathListRet = new List<string>();
 
             StreamReader rSR = null;
             try
             {
                 try { rSR = File.OpenText(DEF_CONFIG_PATH); }
-                catch { throw new Exception("CONFIG 파일(" + DEF_CONFIG_PATH + ")을 열지 못했습니다.");  }
+                catch { throw new Exception("CONFIG 파일(" + DEF_CONFIG_PATH + ")을 열지 못했습니다."); }
 
                 string sLastTrimmedReadLine = null;
                 while (rSR.Peek() >= 0)
                 {
                     sLastTrimmedReadLine = rSR.ReadLine().Trim();
-                    if ("" != sLastTrimmedReadLine)
+                    if ("" == sLastTrimmedReadLine)
                         break;
+
+                    roArchivesPathListRet.Add(sLastTrimmedReadLine);
                 }
 
-                if (null == sLastTrimmedReadLine || "" == sLastTrimmedReadLine)
+                if (0 == roArchivesPathListRet.Count)
                     throw new Exception("CONFIG 파일(" + DEF_CONFIG_PATH + ")에는 유의미한 내용이 없습니다.");
-
-                sArchivesPathRet = sLastTrimmedReadLine;
             }
             catch (Exception roE) { PopUpFatalError(roE.Message); }
             finally { rSR?.Close(); rSR = null; }
 
-            return sArchivesPathRet;
+            return roArchivesPathListRet;
         }
 
         private Dictionary<string, SortedSet<uint>> AcquireArchivesFromFile(string asArchivesPath)
@@ -448,9 +448,9 @@ namespace DownloadArchives
 
         private void OnLoad_MainForm(object aroS, EventArgs aroE)
         {
-            if (null != (msArchivesPath = AcquireArchivesPathFromConfigFile()))
+            if (null != (mroArchivePathList = AcquireArchivesPathListFromConfigFile()) && 0 < mroArchivePathList.Count)
             {
-                if (null != (mroCurrArchives = AcquireArchivesFromFile(msArchivesPath)))
+                if (null != (mroCurrArchives = AcquireArchivesFromFile(mroArchivePathList[0])))
                 {
                     ShowCodesToUI();
                     ShowCurrArchivesToUI();
@@ -463,7 +463,10 @@ namespace DownloadArchives
             if (!misErrorOccured)
             {
                 if (misArchivesModified)
-                    FlushArchivesToFile(msArchivesPath);
+                {
+                    foreach (string sArchivesPath in mroArchivePathList)
+                        FlushArchivesToFile(sArchivesPath);
+                }
             }
         }
 
